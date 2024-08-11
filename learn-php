@@ -1,0 +1,228 @@
+hello, world:
+
+<?php
+echo "Hello, World!\n";
+?>
+
+
+vars:
+
+<?php
+$name = "John";
+$age = 30;
+
+echo "Name: $name\n";
+echo "Age: $age\n";
+?>
+
+
+data types:
+
+<?php
+// String
+$greeting = "Hello, World!";
+
+// Integer
+$year = 2024;
+
+// Float
+$price = 19.99;
+
+// Boolean
+$is_php_fun = true;
+
+// Array
+$colors = array("Red", "Green", "Blue");
+
+// Display types and values
+echo "Greeting: $greeting\n";
+echo "Year: $year\n";
+echo "Price: $price\n";
+echo "Is PHP fun? " . ($is_php_fun ? "Yes" : "No") . "\n";
+echo "Colors: " . implode(", ", $colors) . "\n";
+?>
+
+
+input:
+
+<?php
+echo "Enter your name: ";
+$name = trim(fgets(STDIN));
+
+echo "Hello, $name!\n";
+?>
+
+
+if state:
+
+<?php
+$age = 20;
+
+if ($age >= 18) {
+    echo "You are an adult.\n";
+}
+?>
+
+if else state:
+
+<?php
+$age = 16;
+
+if ($age >= 18) {
+    echo "You are an adult.\n";
+} else {
+    echo "You are not an adult.\n";
+}
+?>
+
+
+calculator program:
+
+<?php
+echo "Enter the first number: ";
+$first_number = (float)trim(fgets(STDIN));
+
+echo "Enter the second number: ";
+$second_number = (float)trim(fgets(STDIN));
+
+echo "Choose an operation (+, -, *, /): ";
+$operation = trim(fgets(STDIN));
+
+$result = 0;
+
+switch ($operation) {
+    case '+':
+        $result = $first_number + $second_number;
+        break;
+    case '-':
+        $result = $first_number - $second_number;
+        break;
+    case '*':
+        $result = $first_number * $second_number;
+        break;
+    case '/':
+        if ($second_number != 0) {
+            $result = $first_number / $second_number;
+        } else {
+            echo "Cannot divide by zero!\n";
+            exit;
+        }
+        break;
+    default:
+        echo "Invalid operation!\n";
+        exit;
+}
+
+echo "The result is: $result\n";
+?>
+
+
+quiz program:
+
+<?php
+$score = 0;
+
+echo "Question 1: What is the capital of France?\n";
+echo "a) Berlin\nb) Paris\nc) Madrid\nd) Rome\n";
+$answer1 = trim(fgets(STDIN));
+
+if (strtolower($answer1) == 'b') {
+    $score++;
+}
+
+echo "Question 2: What is 5 + 7?\n";
+echo "a) 10\nb) 11\nc) 12\nd) 13\n";
+$answer2 = trim(fgets(STDIN));
+
+if (strtolower($answer2) == 'c') {
+    $score++;
+}
+
+echo "Your score: $score/2\n";
+?>
+
+
+tic tac toe program:
+
+<?php
+$board = array(
+    array(' ', ' ', ' '),
+    array(' ', ' ', ' '),
+    array(' ', ' ', ' ')
+);
+
+function print_board($board) {
+    echo "\n";
+    for ($i = 0; $i < 3; $i++) {
+        for ($j = 0; $j < 3; $j++) {
+            echo $board[$i][$j];
+            if ($j < 2) echo " | ";
+        }
+        echo "\n";
+        if ($i < 2) echo "---------\n";
+    }
+    echo "\n";
+}
+
+function check_winner($board) {
+    for ($i = 0; $i < 3; $i++) {
+        if ($board[$i][0] == $board[$i][1] && $board[$i][1] == $board[$i][2] && $board[$i][0] != ' ') {
+            return $board[$i][0];
+        }
+        if ($board[0][$i] == $board[1][$i] && $board[1][$i] == $board[2][$i] && $board[0][$i] != ' ') {
+            return $board[0][$i];
+        }
+    }
+    if ($board[0][0] == $board[1][1] && $board[1][1] == $board[2][2] && $board[0][0] != ' ') {
+        return $board[0][0];
+    }
+    if ($board[0][2] == $board[1][1] && $board[1][1] == $board[2][0] && $board[0][2] != ' ') {
+        return $board[0][2];
+    }
+    return null;
+}
+
+$current_player = 'X';
+$turns = 0;
+
+while ($turns < 9) {
+    print_board($board);
+    echo "Player $current_player, enter your move (row and column): ";
+    list($row, $col) = explode(' ', trim(fgets(STDIN)));
+
+    if ($board[$row][$col] == ' ') {
+        $board[$row][$col] = $current_player;
+        $turns++;
+        $winner = check_winner($board);
+
+        if ($winner) {
+            print_board($board);
+            echo "Player $winner wins!\n";
+            exit;
+        }
+
+        $current_player = ($current_player == 'X') ? 'O' : 'X';
+    } else {
+        echo "Invalid move. Try again.\n";
+    }
+}
+
+print_board($board);
+echo "It's a draw!\n";
+?>
+
+
+random numbers:
+
+<?php
+// Generate a random number between 1 and 100
+$random_number = rand(1, 100);
+
+echo "Random Number: $random_number\n";
+
+// Simulate a dice roll (1 to 6)
+$dice_roll = rand(1, 6);
+
+echo "Dice Roll: $dice_roll\n";
+?>
+
